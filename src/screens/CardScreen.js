@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, Animated } from 'react-native';
 import GoodCard from '../components/GoodCard';
 import { CartContext } from '../context/Context.js';
 
@@ -11,6 +11,7 @@ const CartScreen = ({ navigation }) => {
     const totalAmount = cart.reduce((total, item) => {
         return total + item.product.price * item.amount;
     }, 0);
+
 
     return (
         <View style={styles.container}>

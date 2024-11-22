@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import GoodCard from "../components/GoodCard";
+import DelayCard from "../components/DelayCard";
 import { CartContext } from '../context/Context.js';
 
 const Goods = ({ navigation }) => {
-    const { cart, addToCart, updateCartQuantity, deleteGood, delayGood } = useContext(CartContext);
+    const { cart, delay, addToCart, updateCartQuantity, deleteGood, delayGood, returnToCart, deleteGoodDalay } = useContext(CartContext);
 
     const products = [
         { id: '1', name: 'Товар 1', price: 100, description: "Описание товара 1" },
@@ -21,6 +22,18 @@ const Goods = ({ navigation }) => {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => {
                     const cartItem = cart.find((cartItem) => cartItem.product.id === item.id);
+                    const delayedItem = delay.find((delayItem) => delayItem.product.id === item.id);
+
+                    if (delayedItem) {
+                        return (
+                            <DelayCard
+                                item={delayedItem}
+                                returnToCart={returnToCart}
+                                deleteGoodDalay={deleteGoodDalay}
+                            />
+                        );
+                    }
+
                     return (
                         <GoodCard
                             item={cartItem || { product: item }}

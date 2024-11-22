@@ -17,7 +17,7 @@ const GoodCard = ({ item }) => {
                 Цена: {amount ? product.price * amount : product.price} ₽
             </Text>
             <Text style={styles.description}>{product.description}</Text>
-
+            <Text style={styles.description}>Товар в отложенном</Text>
             <View style={styles.controlBox}>
                 <TouchableOpacity
                     style={styles.returnButton}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#777',
     },
-    button: {
+    returnButton: {
         backgroundColor: '#007bff',
         padding: 10,
         borderRadius: 8,
@@ -122,11 +122,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
     },
-    deleteButton: { backgroundColor: 'red', padding: 8, borderRadius: 4 },
-    deleteText: { color: 'white', fontWeight: 'bold' },
     delayButton: { backgroundColor: 'orange', padding: 8, borderRadius: 4 },
     delayText: { color: 'white', fontWeight: 'bold' },
-    returnButton: { backgroundColor: 'green', padding: 8, borderRadius: 4 },
     returnText: { color: 'white', fontWeight: 'bold' },
 });
 

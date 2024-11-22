@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // 2. Реализовать кнопку для удаления товара из корзины с автоматическим обновлением состояния корзины +
 // 3. Корзина должна отображать итоговую стоимость всех товаров +
 // 4. Применение промокода +
-// 5. Перемещение товара в отложенные(новая страница) +-
+// 5. Перемещение товара в отложенные(новая страница) +
 // 6. Анимация 
 
 export const CartContext = createContext();
@@ -16,12 +16,19 @@ export const CartProvider = ({ children }) => {
     const [discount, setDiscount] = useState(0);
     const promoCodes = { PROMO10: 10, PROMO20: 20, PROMO99: 99 };
 
+    
+
     useEffect(() => {
         const loadCart = async () => {
             const savedCart = await AsyncStorage.getItem('cart');
             if (savedCart) setCart(JSON.parse(savedCart));
         };
+        const loadDelay = async () => {
+            const savedDelay = await AsyncStorage.getItem('delay');
+            if (savedDelay) setDelay(JSON.parse(savedDelay));
+        };
         loadCart();
+        loadDelay();
     }, []);
 
     const addToCart = async (product) => {
@@ -70,7 +77,6 @@ export const CartProvider = ({ children }) => {
     // -------------- Отложенные --------------
 
     const deleteGoodDalay = async (productId) => {
-        console.log("test");
         let updatedDelay = [...delay];
         const index = updatedDelay.findIndex((item) => item.product.id === productId);
 
