@@ -12,6 +12,7 @@ const CartScreen = ({ navigation }) => {
         return total + item.product.price * item.amount;
     }, 0);
 
+    const totalSum = calculateTotal().toFixed(2)
 
     return (
         <View style={styles.container}>
@@ -42,8 +43,8 @@ const CartScreen = ({ navigation }) => {
                 <TouchableOpacity style={styles.button} onPress={clearCart}>
                     <Text style={styles.buttonText}>Очистить корзину</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Delay')}>
-                    <Text style={styles.buttonText}>Отложенные</Text>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OrderPage', { totalSum })}>
+                    <Text style={styles.buttonText}>Оформить</Text>
                 </TouchableOpacity>
             </View>
         </View>

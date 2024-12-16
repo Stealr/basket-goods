@@ -52,6 +52,9 @@ const Goods = ({ navigation }) => {
                 <TouchableOpacity style={styles.delayButton} onPress={() => navigation.navigate('Delay')}>
                     <Text style={styles.buttonText}>Отложенные</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.delayButton} onPress={() => navigation.navigate('OrderList')}>
+                    <Text style={styles.buttonText}>Заказы</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -60,11 +63,11 @@ const Goods = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16 },
-    button: { backgroundColor: '#007bff', padding: 16, alignItems: 'center', marginVertical: 16 },
+    button: { backgroundColor: '#007bff', padding: 8, alignItems: 'center', marginVertical: 16 },
     buttonText: { color: '#fff', fontWeight: 'bold' },
     delayButton: {
         backgroundColor: '#007bff',
-        padding: 16,
+        padding: 10,
         alignItems: 'center',
     },
     buttonBox: {
